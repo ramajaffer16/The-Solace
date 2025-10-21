@@ -41,24 +41,24 @@ class StartScreenViewController: UIViewController {
         return label
     }()
 
-    private let getStartedButton: UIButton = {
+    lazy var getStartedButton: UIButton = {
         let button = UIButton()
         button.setTitle("Get Started", for: .normal)
         button.titleLabel?.font = UIFont(name: "PTSerif-Bold", size: 18)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(named: "Forest")
         button.layer.cornerRadius = 14
-        button.addTarget(StartScreenViewController.self, action: #selector(getStartedButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(getStartedButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
-    private let loginButton: UIButton = {
+    lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
         button.setTitleColor(UIColor(named: "Forest"), for: .normal)
         button.titleLabel?.font = UIFont(name: "PTSerif-Bold", size: 16)
-        button.addTarget(StartScreenViewController.self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -82,8 +82,6 @@ class StartScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        
         setupUI()
     }
 
@@ -97,15 +95,15 @@ class StartScreenViewController: UIViewController {
         view.addSubview(bottomImageView)
 
         NSLayoutConstraint.activate([
-            logoImageView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 5.0),
+            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4),
             logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
 
-            titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 12.0),
+            titleLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 5),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
-            subtitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 2.0),
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             subtitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
             getStartedButton.topAnchor.constraint(equalToSystemSpacingBelow: subtitleLabel.bottomAnchor, multiplier: 4.0),
@@ -123,8 +121,7 @@ class StartScreenViewController: UIViewController {
             bottomImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.10)
         ])
-
-    }
+  }
 
     //MARK: BUTTON ACTIONS
     @objc private func getStartedButtonTapped() {

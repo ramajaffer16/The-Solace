@@ -11,6 +11,7 @@ protocol AppCoordinatorDelegate: AnyObject {
    func goToHome()
    func goToLogin()
    func goToGetStarted()
+   func goToStartScreen()
 }
 
 class AppCoordinator: AppCoordinatorDelegate {
@@ -22,23 +23,33 @@ class AppCoordinator: AppCoordinatorDelegate {
     }
 
     func start() {
+        let viewModel = SplashScreenViewModel(coordinator: self)
+        let viewController = SplashViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
+  }
+
+    func goToStartScreen() {
         let viewModel = StartScreenViewModel(coordinator: self)
         viewModel.coordinatior = self
         let loginViewController = StartScreenViewController(viewModel: viewModel)
-        navigationController.pushViewController(loginViewController, animated: false)
-  }
+        navigationController.pushViewController(loginViewController, animated: true)
+    }
 
     func goToHome() {
-//        let viewModel = HomeScreenViewModel()
-//        let viewController = HomeScreenViewController(viewModel: viewModel)
-
+     let viewModel = HomeScreenViewModel(coordinator: self)
+        let viewController = HomeScreenViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
     }
 
     func goToLogin() {
-       let viewModel = 
+       let viewModel = LoginScreenVM(coordinator: self)
+        let viewController = LoginScreenViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
     }
 
     func goToGetStarted() {
-        
+        let viewModel = RegisterScreenViewModel(coordinator: self)
+        let viewController = RegisterScreenViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

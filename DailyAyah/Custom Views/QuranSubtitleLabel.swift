@@ -17,20 +17,20 @@ class QuranSubtitleLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(textAlignment: NSTextAlignment, fontSize: CGFloat, weight: UIFont.Weight = .regular){
+    init(textAlignment: NSTextAlignment = .center,font: UIFont = UIFont(name: "PTSerif-Regular", size: 14) ?? .systemFont(ofSize: 14), textColor: UIColor = UIColor(named: "Forest") ?? .systemGreen, text: String){
         super.init(frame: .zero)
         self.textAlignment = textAlignment
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: weight)
+        self.font = font
+        self.text = text
+        self.textColor = textColor
         configure()
     }
 
     private func configure(){
-        textColor = UIColor.secondaryLabel
         numberOfLines = 0
         lineBreakMode = .byWordWrapping
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.8
         translatesAutoresizingMaskIntoConstraints = false
     }
-
 }

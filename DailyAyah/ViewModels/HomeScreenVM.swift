@@ -5,6 +5,28 @@
 //  Created by Ramadhan on 09/10/2025.
 //
 
-class HomeScreenVM {
-    
+//MARK: STUDY THIS CODE
+class HomeScreenViewModel {
+    private let networkManager = NetworkManager.shared
+    private let localManager = LocalDataManager()
+    var verses: [Verse] = []
+    var coordinator: AppCoordinatorDelegate
+
+    init(coordinator: AppCoordinatorDelegate) {
+        self.coordinator = coordinator
+    }
+
+    func loadVerses(for mood: String, completion: @escaping () -> Void) {
+        guard let moodData = localManager.loadMoodVerses(from: mood) else { return }
+
+        networkManager.fetchVerses(for: moodData) { result in
+            switch result {
+            case .success(let verses):
+                self.verses = verses
+                completion()
+            case .failure(let error):
+                print("❌ Error:", error.localizedDescription)
+            }
+        }
+    }
 }

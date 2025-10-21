@@ -8,6 +8,7 @@
 import UIKit
 
 class CategoriesButton: UIButton {
+    var onTap: (() -> Void)?
 
     override init (frame:CGRect){
         super.init(frame: frame)
@@ -25,6 +26,7 @@ class CategoriesButton: UIButton {
   }
 
     private func setup(){
+        addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         setTitleColor(UIColor(named: "Forest"), for: .normal)
         layer.cornerRadius = 8
         layer.backgroundColor = UIColor.systemBackground.cgColor
@@ -37,4 +39,9 @@ class CategoriesButton: UIButton {
         titleLabel?.numberOfLines = 0
         titleLabel?.textAlignment = .center
     }
+
+    @objc private func buttonTapped(){
+        onTap?()
+    }
+
 }

@@ -6,5 +6,18 @@
 //
 
 class LoginScreenVM {
+    var coordinator: AppCoordinatorDelegate
+
+    init (coordinator: AppCoordinatorDelegate) {
+      self.coordinator = coordinator
+    }
+
+    func goToLogin() {
+        coordinator.goToLogin()
+    }
+
+    func goToHomeScreen() {
+        coordinator.goToHome()
+    }
 
 }

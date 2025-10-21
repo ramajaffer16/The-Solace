@@ -8,6 +8,7 @@
 import UIKit
 
 class QuranButton: UIButton {
+    var onTap: (() -> Void)?
 
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -25,6 +26,7 @@ class QuranButton: UIButton {
     }
 
     private func configure() {
+        addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         setTitleColor(.white, for: .normal)
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         layer.cornerRadius = 12
@@ -33,5 +35,9 @@ class QuranButton: UIButton {
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowRadius = 4
         translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    @objc func buttonTapped() {
+        onTap?()
     }
 }

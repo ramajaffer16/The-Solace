@@ -13,23 +13,31 @@ class QuranTextField: UITextField {
         super.init(frame: frame)
         configure()
     }
-    
+
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    init(placeholder: String? = nil, isSecureTextEntry: Bool = false, autoCapitalizationType: UITextAutocapitalizationType = .none) {
+        super.init(frame: .zero)
+        self.placeholder = placeholder
+        self.isSecureTextEntry = isSecureTextEntry
+        self.autocapitalizationType = autoCapitalizationType
     }
 
     private func configure() {
         layer.cornerRadius = 10
         layer.borderWidth = 1.5
-        layer.borderColor = (UIColor(named: "Primary Green") ?? UIColor.systemGreen).cgColor
+        layer.borderColor = (UIColor(named: "Forest") ?? UIColor.systemGreen).cgColor
 
-       textColor = .label
-       font = UIFont.preferredFont(forTextStyle: .body)
-       tintColor = (UIColor(named: "Primary Green") ?? UIColor.systemGreen)
-       textAlignment = .left
+        textColor = .label
+        borderStyle = .roundedRect
+        font = UIFont.preferredFont(forTextStyle: .body)
+        tintColor = (UIColor(named: "Forest") ?? UIColor.systemGreen)
+        textAlignment = .left
         backgroundColor = UIColor.systemBackground.withAlphaComponent(0.95)
 
-        placeholder = "Enter text..."
         clearButtonMode = .whileEditing
         autocorrectionType = .no
         returnKeyType = .done
