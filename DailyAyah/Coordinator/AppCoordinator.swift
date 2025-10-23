@@ -12,6 +12,7 @@ protocol AppCoordinatorDelegate: AnyObject {
    func goToLogin()
    func goToGetStarted()
    func goToStartScreen()
+    func goToVersesList(verses: [Verse])
 }
 
 class AppCoordinator: AppCoordinatorDelegate {
@@ -50,6 +51,12 @@ class AppCoordinator: AppCoordinatorDelegate {
     func goToGetStarted() {
         let viewModel = RegisterScreenViewModel(coordinator: self)
         let viewController = RegisterScreenViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+
+    func goToVersesList(verses: [Verse]) {
+        let viewModel = VersesListViewModel(coordinator: self,verses: verses)
+        let viewController = VersesListViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
 }

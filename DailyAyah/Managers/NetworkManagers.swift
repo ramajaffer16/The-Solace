@@ -48,7 +48,7 @@ extension NetworkManager {
             fetchAyah(surah: ref.surah, ayah: ref.ayah) { result in
                 switch result {
                 case .success(let response):
-                    let verse = Verse(apiResponse: response, surah: ref.surah, ayah: ref.ayah)
+                    let verse = Verse(apiResponse: response, surahNumber: ref.surah, ayahNumber: ref.ayah)
                     verses.append(verse)
                 case .failure(let error):
                     firstError = error
