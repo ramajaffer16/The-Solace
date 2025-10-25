@@ -63,7 +63,7 @@ class HomeScreenViewController: UIViewController {
 
     private let categoriesList: UIStackView = {
         let categories = [
-            ("Fear", "😟"),
+                ("Fear", "😟"),
                 ("Patience", "⏳"),
                 ("Hope", "🌅"),
                 ("Forgiveness", "✋"),
