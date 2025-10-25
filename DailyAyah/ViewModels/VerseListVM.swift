@@ -13,4 +13,12 @@ class VersesListViewModel {
         self.coordinator = coordinator
         self.verses = verses
     }
+
+    func toggleFavourite(for ayah: FavouriteAyah) {
+            if FavouritesStorage.load().contains(ayah) {
+                FavouritesStorage.remove(ayah)
+            } else {
+                FavouritesStorage.add(ayah)
+            }
+        }
 }

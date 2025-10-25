@@ -12,10 +12,17 @@ final class FavouritesViewController: UIViewController {
     private let tableView = UITableView()
     private let emptyStateLabel = UILabel()
     private let viewModel: FavouritesViewModel
+    private var favourites: [FavouriteAyah] = []
 
     init(viewModel: FavouritesViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        favourites = FavouritesStorage.load()
+        tableView.reloadData()
     }
 
     required init?(coder: NSCoder) {
