@@ -5,7 +5,7 @@
 //  Created by Ramadhan on 15/10/2025.
 //
 
-struct Verse: Codable {
+struct Verse: Codable, Equatable {
     let surahNumber: Int
     let ayahNumber: Int
     let arabicText: String
@@ -20,7 +20,6 @@ extension Verse{
         self.arabicText = apiResponse.data.first{$0.edition.language == "ar"}?.text ?? ""
         self.translationText = apiResponse.data.first{$0.edition.language == "en"}?.text ?? ""
         self.reference = reference
-
     }
 }
 

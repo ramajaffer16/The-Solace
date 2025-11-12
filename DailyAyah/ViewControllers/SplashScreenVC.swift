@@ -65,7 +65,7 @@ class SplashViewController: UIViewController {
 
         // Wait for 2 seconds before showing login
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {[weak self] in
-            self?.viewModel.goToStartScreen()
+            self?.viewModel.goToNextStartScreen()
         }
     }
 }

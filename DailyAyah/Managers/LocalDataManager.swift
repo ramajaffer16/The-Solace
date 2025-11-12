@@ -9,7 +9,7 @@
 
 import Foundation
 
-class LocalDataManager {
+class LocalDataManager: localDataManaging {
     func loadMoodVerses(from fileName: String) -> MoodVerses? {
         guard let url = Bundle.main.url(forResource: fileName, withExtension: "json") else {
             print("❌ File not found in bundle: \(fileName).json")

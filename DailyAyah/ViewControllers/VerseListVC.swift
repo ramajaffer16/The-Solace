@@ -25,6 +25,7 @@ final class VersesListViewController: UIViewController {
     }
 
     private func setupTableView() {
+        view.backgroundColor = UIColor(named: "Cream")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.register(VerseTableViewCell.self, forCellReuseIdentifier: "VerseCell")

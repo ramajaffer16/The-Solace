@@ -12,7 +12,7 @@ final class FavouritesViewController: UIViewController {
     private let tableView = UITableView()
     private let emptyStateLabel = UILabel()
     private let viewModel: FavouritesViewModel
-    private var favourites: [FavouriteAyah] = []
+    private var favourites: [Verse] = []
 
     init(viewModel: FavouritesViewModel) {
         self.viewModel = viewModel
@@ -38,7 +38,7 @@ final class FavouritesViewController: UIViewController {
 
     private func setupUI() {
         title = "Favourites"
-        view.backgroundColor = UIColor.systemBackground
+        view.backgroundColor = UIColor(named: "Cream")
 
         // Table view setup
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -86,9 +86,9 @@ extension FavouritesViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "VerseCell", for: indexPath) as? VerseTableViewCell else {
             return UITableViewCell()
         }
-        let ayah = viewModel.favourites[indexPath.row]
+        let ayah: Verse = viewModel.favourites[indexPath.row]
         cell.configure(with: ayah)
-        cell.onFavouriteTapped = { [weak self] in
+        cell.onFavouriteTapped = { [weak self] ayah, isFavourite in
             self?.viewModel.removeFavourite(ayah)
         }
         return cell

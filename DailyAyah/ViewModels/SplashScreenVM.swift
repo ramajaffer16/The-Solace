@@ -12,7 +12,7 @@ class SplashScreenViewModel {
         self.coordinator = coordinator
     }
     
-    func goToStartScreen() {
-        coordinator.goToStartScreen()
+    func goToNextStartScreen() {
+        coordinator.goToNextStartScreen()
     }
 }

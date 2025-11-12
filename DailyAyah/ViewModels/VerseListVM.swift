@@ -14,7 +14,7 @@ class VersesListViewModel {
         self.verses = verses
     }
 
-    func toggleFavourite(for ayah: FavouriteAyah) {
+    func toggleFavourite(for ayah: Verse) {
             if FavouritesStorage.load().contains(ayah) {
                 FavouritesStorage.remove(ayah)
             } else {

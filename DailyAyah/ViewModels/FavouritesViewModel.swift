@@ -6,17 +6,22 @@
 //
 
 final class FavouritesViewModel {
-    private(set) var favourites: [FavouriteAyah] = [] {
+    var coordinator: AppCoordinatorDelegate
+    private(set) var favourites: [Verse] = [] {
         didSet { onFavouritesChanged?(favourites) }
     }
 
-    var onFavouritesChanged: (([FavouriteAyah]) -> Void)?
+    init (coordinator: AppCoordinatorDelegate) {
+        self.coordinator = coordinator
+    }
+
+    var onFavouritesChanged: (([Verse]) -> Void)?
 
     func loadFavourites() {
         favourites = FavouritesStorage.load()
     }
 
-    func removeFavourite(_ ayah: FavouriteAyah) {
+    func removeFavourite(_ ayah: Verse) {
         FavouritesStorage.remove(ayah)
         favourites = FavouritesStorage.load()
     }
